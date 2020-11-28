@@ -20,7 +20,11 @@ img.onload = function(){
 };
 window.onload = async function(){
 	qwerty = getParams(window.location.href);
-	try {
+	console.log(qwerty['q']);
+	if (!qwerty['q']) 
+	{
+		qwerty['q'] = "github.com/kardandon";
+	}
 	param = document.querySelector('input');
 	param.value = "";
 	for (let i = 0; i < qwerty['q'].length; i++)
@@ -28,9 +32,12 @@ window.onload = async function(){
 		param.value += qwerty['q'][i];
 		await sleep(300);
 	}
+	if(qwerty['q'] == "github.com/kardandon")
+	{
+		window.location.replace("https://github.com/kardandon");
 	}
-	
-	catch(err) {
+	else
+	{
+		document.querySelector('form').submit();
 	}
-	document.querySelector('form').submit();
-}
+};
